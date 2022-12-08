@@ -14,9 +14,7 @@ tags:
 
 ## This is a Heading h2
 
-<img class="max-w-full h-auto border rounded-lg" src="/static/img/giphy.webp" alt="Shuddering Ryan Reynolds">
-
-## Emphasis
+<img class="max-w-full h-auto border rounded-lg" src="/static/img/giphy.webp" alt="Shuddering Ryan Reynolds" width="300" height="400">
 
 *This text will be italic*\
 *This will also be italic*
