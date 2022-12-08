@@ -5,15 +5,6 @@ const htmlmin = require("html-minifier");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 
 module.exports = function (eleventyConfig) {
-  // Create the filter function.
-  function sortByOrder(values) {
-    let vals = [...values]
-    return vals.sort((a, b) => Math.sign(a.order - b.order))
-  }
-
-  // Add the filter.
-  eleventyConfig.addFilter('sortByOrder', sortByOrder)
-
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
@@ -54,22 +45,6 @@ module.exports = function (eleventyConfig) {
   // Copy favicon to route of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
-  // Minify HTML
-  /*
-  eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
-    // Eleventy 1.0+: use this.inputPath and this.outputPath instead
-    if (outputPath.endsWith(".html")) {
-      let minified = htmlmin.minify(content, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true,
-      });
-      return minified;
-    }
-
-    return content;
-  });
-  */
   //  fix for lack of filters access in pug.
   global.filters = eleventyConfig.javascriptFunctions; 
   eleventyConfig.setPugOptions({
@@ -77,8 +52,8 @@ module.exports = function (eleventyConfig) {
       debug: false
   });
 
-  // Let Eleventy transform HTML files as nunjucks
-  // So that we can use .html instead of .njk
+  // Let Eleventy transform HTML files as pug templates.
+  // Markdown files will be run through the nunjucks parser.
   return {
     dir: {
       input: "src",
