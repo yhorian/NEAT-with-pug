@@ -10,8 +10,8 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
-  - label: "Posts"
-    name: "posts"
+  - label: "Blog"
+    name: "blog"
     folder: "src/posts"
     create: true
     editor:
@@ -20,12 +20,37 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Author", name: "author", widget: "string" }
-      - { label: "Permalink", name: "author", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - widget: select
-        label: "tags"
+      - { label: "Permalink", name: "permalink", widget: "string", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: false }
+      - label: "Tags"
         name: "tags"
-        multiple: true
-        create: true
-        options: ["Tags", "created", "from", "config.yml"]
+        widget: "list"
+        default: ["Analytics", "Cloudflare"]
+        add_to_top: true
+        allow_add: true
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Pages"
+    name: "pages"
+    folder: "src/pages"
+    create: true
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", default: {{ title }} }
+      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: true}
+      - {label: "Add to Footer", name: "footer", widget: "boolean", default: false}
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Settings"
+    name: "settings"
+    editor:
+      preview: false
+    files:
+      - label: "Blog Settings"
+        name: "settings"
+        file: "src/_data/settings.yaml"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Author, name: author, widget: string }
+          - { label: URL, name: url, widget: string }
