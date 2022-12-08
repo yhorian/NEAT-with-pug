@@ -5,6 +5,15 @@ const htmlmin = require("html-minifier");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 
 module.exports = function (eleventyConfig) {
+  // Create the filter function.
+  function sortByOrder(values) {
+    let vals = [...values]
+    return vals.sort((a, b) => Math.sign(a.order - b.order))
+  }
+
+  // Add the filter.
+  eleventyConfig.addFilter('sortByOrder', sortByOrder)
+
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
