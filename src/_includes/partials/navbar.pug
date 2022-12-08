@@ -1,16 +1,12 @@
 
 nav(class="sticky top-0 bg-slate-50")
     div(class="w-full flex items-center justify-between flex-wrap p-3 container mx-auto")
-        div(class="flex text-center")
+        div(class="flex text-center flex-grow")
             a(href="/" class="text-indigo-500 font-bold text-lg") Cardiff.marketing
         div(class="flex text-center ")
             if navigation.items
                 ul(class="pt-0 list-reset flex justify-end flex-1 items-center")
                     for item in navigation.items
                         li(class="nav__item mr-3")
-                            if item.icon
-                                a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.text }
-                                    | !{item.icon}
-                            else
-                                a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.text }
+                            a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.text }
 
