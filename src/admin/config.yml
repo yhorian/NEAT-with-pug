@@ -2,13 +2,17 @@ backend:
   # Use netlify identity as backend
   name: git-gateway
   branch: master
-  
+site_url: https://cardiff.marketing
+display_url: https://cardiff.marketing
+logo_url: https://cardiff.marketing/favicon.ico
+show_preview_links: true
+locale: en-gb
 media_folder: "src/static/img"
 public_folder: "/static/img"
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
-# publish_mode: editorial_workflow
+publish_mode: editorial_workflow
 collections:
   - label: "Blog"
     name: "blog"
@@ -39,14 +43,37 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Navigation Caption", name: "navtitle", widget: "string", default: {{ title }}, required: false }
-      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: false, required: false }
-      - {label: "Add to Footer", name: "footer", widget: "boolean", default: false, required: false }
+      - { label: "Permalink", name: "permalink", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
     editor:
       preview: false
     files:
+      - label: "Navigation"
+        name: "nav"
+        file: "src/_data/nav.yaml"
+        fields:
+          - label: Nav Items
+            name: items
+            widget: list
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
+      - label: "Footer"
+        name: "footer"
+        file: "src/_data/footer.yaml"
+        fields:
+          - label: Footer Links
+            name: items
+            widget: list
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
       - label: "Blog Settings"
         name: "settings"
         file: "src/_data/settings.yaml"
