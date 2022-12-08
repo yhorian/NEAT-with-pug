@@ -39,8 +39,8 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Navigation Caption", name: "navtitle", widget: "string", default: {{ title }}, required: false }
-      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: false}
-      - {label: "Add to Footer", name: "footer", widget: "boolean", default: false}
+      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: false, required: false }
+      - {label: "Add to Footer", name: "footer", widget: "boolean", default: false, required: false }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
