@@ -14,8 +14,7 @@ tags:
 
 ## This is a Heading h2
 
-
-![sdfsd](/static/img/giphy.webp "fsdfdsf")
+<img class="max-w-full h-auto border rounded-lg" src="/static/img/giphy.webp" alt="Shuddering Ryan Reynolds">
 
 ## Emphasis
 
