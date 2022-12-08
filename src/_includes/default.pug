@@ -7,10 +7,10 @@ html(lang='en')
     title #{ title }
     meta(name="description" content=description)
     link(rel="canonical" href=filters.url(settings.url + page.url))
-    link(rel="stylesheet" type="text/css" href="../static/css/style.css")
+    link(rel="stylesheet" type="text/css" href="/static/css/style.css")
     if prism
-      link(rel="stylesheet" type="text/css" href="../static/css/prism-tomorrow.css")
-    script(src="../static/js/alpine.js" defer) 
+      link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
+    script(src="/static/js/alpine.js" defer) 
   body
     include ./partials/navbar.pug
 
