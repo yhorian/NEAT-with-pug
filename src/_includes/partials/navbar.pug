@@ -9,5 +9,8 @@ nav(class="sticky top-0 bg-slate-50")
                     each item in collections.page
                         if item.data.navigation
                             li(class="nav__item mr-3")
-                                a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.data.title }
+                                if navtitle
+                                    a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.data.navtitle }
+                                else
+                                    a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.data.title }
 

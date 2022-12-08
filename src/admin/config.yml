@@ -38,8 +38,8 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
-      - { label: "Title", name: "title", widget: "string", default: {{ title }} }
-      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: true}
+      - { label: "Navigation Caption", name: "navtitle", widget: "string", default: {{ title }}, required: false }
+      - {label: "Add to Navigation", name: "navigation", widget: "boolean", default: false}
       - {label: "Add to Footer", name: "footer", widget: "boolean", default: false}
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
