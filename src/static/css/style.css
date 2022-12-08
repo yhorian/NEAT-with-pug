@@ -5,13 +5,12 @@
 /*Your Custom CSS Goes here*/
 
 h1 {
-  @apply text-3xl tracking-tighter mb-3 text-center lg:text-7xl;
+  @apply text-3xl md:text-5xl tracking-tighter mb-3 text-center lg:text-6xl;
 }
 
-h3 {
+h2, h3 {
   @apply text-2xl font-bold mb-3; 
 }
-
 /* Syntax Highlighting*/
 
 body :not(pre) > code[class*="language-"],

@@ -7,10 +7,10 @@ html(lang='en')
     title #{ title }
     if description
       meta(name="description" content=description)
-    link(rel="stylesheet" type="text/css" href="/static/css/style.css")
+    link(rel="stylesheet" type="text/css" href="../static/css/style.css")
     if prism
-      link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
-    script(src="./static/js/alpine.js" defer) 
+      link(rel="stylesheet" type="text/css" href="../static/css/prism-tomorrow.css")
+    script(src="../static/js/alpine.js" defer) 
   body
     include ./partials/navbar.pug
 
@@ -19,5 +19,5 @@ html(lang='en')
     include ./partials/footer.pug
 
     if path=="home"
-      script(type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js")
+      script(type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer)
 
