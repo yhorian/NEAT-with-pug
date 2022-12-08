@@ -52,7 +52,7 @@ collections:
     files:
       - label: "Navigation"
         name: "nav"
-        file: "src/_data/nav.yaml"
+        file: "src/_data/nav.json"
         fields:
           - label: Nav Items
             name: items
@@ -64,7 +64,7 @@ collections:
               - { label: URL, name: url, widget: string }
       - label: "Footer"
         name: "footer"
-        file: "src/_data/footer.yaml"
+        file: "src/_data/footer.json"
         fields:
           - label: Footer Links
             name: items
@@ -76,7 +76,7 @@ collections:
               - { label: URL, name: url, widget: string }
       - label: "Blog Settings"
         name: "settings"
-        file: "src/_data/settings.yaml"
+        file: "src/_data/settings.json"
         fields:
           - { label: Name, name: name, widget: string }
           - { label: Author, name: author, widget: string }
