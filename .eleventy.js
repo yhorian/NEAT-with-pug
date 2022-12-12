@@ -12,7 +12,7 @@ module.exports = function (eleventyConfig) {
 
   // Readable date transformation.
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).date.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
+    return dateObj.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
   });
 
   eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
