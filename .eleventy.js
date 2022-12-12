@@ -1,4 +1,3 @@
-const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const lazy_loading = require('markdown-it-image-lazy-loading');
@@ -8,22 +7,22 @@ module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
-  // Merge data instead of overriding
+  // Merge data instead of overriding.
   eleventyConfig.setDataDeepMerge(true);
 
-  // human readable date
+  // Readable date transformation.
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "dd LLL yyyy"
-    );
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).date.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
   });
 
   eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
-  // Syntax Highlighting for Code blocks
+  // Syntax Highlighting for Code blocks.
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Copy Static Files to /_Site
+  // Prism CSS is used by the eleventy syntax highlight plugin 
+  // https://www.11ty.dev/docs/plugins/syntaxhighlight/
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
