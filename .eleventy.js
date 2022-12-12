@@ -2,27 +2,29 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const lazy_loading = require('markdown-it-image-lazy-loading');
 
-
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
-  // Merge data instead of overriding.
+  // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
-
+ 
   // Readable date transformation.
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return dateObj.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
   });
 
+  // Get current year.
+  // Accessed in pug by doing "filters.year()"
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
+  // Lazy loading added to markdown image tags. 
   eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
-  // Syntax Highlighting for Code blocks.
+  // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Copy Static Files to /_Site
-  // Prism CSS is used by the eleventy syntax highlight plugin 
-  // https://www.11ty.dev/docs/plugins/syntaxhighlight/
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
@@ -33,7 +35,8 @@ module.exports = function (eleventyConfig) {
   // Runs PostCSS as part of Eleventy's pipeline. Will respect postcss.config.js and tailwind.config.js
   eleventyConfig.addPlugin(PostCSSPlugin);
 
-  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed.
+  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
+  // Only a concern when you do 'npm run dev'
   eleventyConfig.setServerOptions({domdiff: false});
 
   // Copy Image Folder to /_site
@@ -43,19 +46,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
   //  fix for lack of filters access in pug.
+  // https://github.com/11ty/eleventy/issues/1523
   global.filters = eleventyConfig.javascriptFunctions; 
   eleventyConfig.setPugOptions({
       globals: ['filters'], 
       debug: false
   });
 
-  // Let Eleventy transform HTML files as pug templates.
   // Markdown files will be run through the nunjucks parser.
   return {
     dir: {
       input: "src",
     },
-    htmlTemplateEngine: "pug",
     markdownTemplateEngine: "njk"
   };
 };
